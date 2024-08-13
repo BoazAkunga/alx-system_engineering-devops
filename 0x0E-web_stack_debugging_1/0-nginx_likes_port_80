@@ -1,5 +1,5 @@
 !/usr/bin/env bash
-# Configures an Nginx server 2 listen on port 80.
+# nginx likes port 80
 
 apt-get update -y
 apt_get install -y nginx
