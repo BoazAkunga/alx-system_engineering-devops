@@ -1,21 +1,11 @@
 #!/usr/bin/env bash
-#Install nginx web server
-sudo apt-get update && sudo apt-get install nginx
+# servers are the piece of software generating and serving HTML Pages
+# Installing nginx on web-01
 
-# Start nginx service
-sudo service nginx start
-
-# Create index.html with "Hello World!"
-sudo touch /var/www/html/index.html
-echo "Hello World!" | sudo tee /var/www/html/index.html
-
-# Update Nginx configuration to add redirection
-sudo sed -i '/^}$/i \ \n\trewrite ^/redirect_me$ https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
-
-# Test Nginx configuration for syntax errors
-sudo nginx -t
-
-# Restart Nginx to apply changes
+apt-get update -y
+apt-get install nginx -y
+sudo ufx allow 'Nginx HTTP'
+sh -c 'echo "Hello World!" > /var/www/html/index.html'
+sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=0U4MFxHQQ-A permanent;' /etc/nginx/sites-available/default
 service nginx restart
 
-echo -e "\nCompleted.\n"
