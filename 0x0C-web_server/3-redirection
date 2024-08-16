@@ -17,3 +17,5 @@ sudo nginx -t
 
 # Restart Nginx to apply changes
 service nginx restart
+
+echo -e "\nCompleted.\n"
